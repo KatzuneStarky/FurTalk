@@ -1,3 +1,4 @@
+import {useHistory} from 'react-router-dom';
 import './HomePage.scss';
 import Header from '../UI/Header/Header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -5,7 +6,14 @@ import {
     faVideo,
     faKeyboard,
 } from '@fortawesome/free-solid-svg-icons';
+import shortid from 'shortid';
 const HomePage = () => {
+    const history = useHistory();
+    const startCall = () => {
+        const uid = shortid.generate();
+        history.push(`/${uid}#init`);
+    }
+
     return(
         <div className="home-page">
             <Header />
@@ -16,8 +24,8 @@ const HomePage = () => {
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                         <div className="action-btn">
-                            <button className="btn green">
-                                <FontAwesomeIcon className="icon-block" icon={faVideo} />
+                            <button className="btn green" onClick={startCall}>
+                                <FontAwesomeIcon className="icon-block" icon={faVideo}/>
                                 Nueva meeting
                             </button>
                                 <div className="input-block">
